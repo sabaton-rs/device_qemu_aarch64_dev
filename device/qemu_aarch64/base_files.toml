@@ -1,0 +1,491 @@
+# A directory
+[[dir]] 
+name = "/sbin"
+mode = 0o555
+
+[[dir]] 
+name = "/vendor"
+mode = 0o755
+
+[[dir]] 
+name = "/oem"
+mode = 0o755
+
+[[dir]] 
+name = "/dev"
+mode = 0o755
+
+[[dir]] 
+name = "/proc"
+mode = 0o755
+
+[[dir]] 
+name = "/sys"
+mode = 0o500
+
+[[dir]] 
+name = "/mnt"
+mode = 0o500
+
+[[dir]] 
+name = "/data"
+mode = 0o755
+
+# Systemd needs a /run directory
+[[dir]] 
+name = "/run"
+mode = 0o755
+
+[[ifile]]
+name = "/etc/passwd"
+source = '''root:x:0:0:root:/home/root:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+messagebus:x:999:999::/var/lib/dbus:/bin/false
+avahi:x:998:998::/run/avahi-daemon:/bin/false
+rpc:x:997:997::/:/bin/false
+systemd-network:x:996:995::/:/sbin/nologin
+systemd-resolve:x:995:994::/:/sbin/nologin
+systemd-timesync:x:994:993::/:/sbin/nologin
+systemd-bus-proxy:x:993:992::/:/sbin/nologin
+'''
+
+[[ifile]]
+name = "/etc/group"
+source = '''root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+input:x:19:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:
+floppy:x:25:
+tape:x:26:
+sudo:x:27:
+audio:x:29:
+dip:x:30:
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:
+kvm:x:47:
+staff:x:50:
+games:x:60:
+shutdown:x:70:
+users:x:100:
+nogroup:x:65534:
+messagebus:x:999:
+avahi:x:998:
+rpc:x:997:
+systemd-journal:x:996:
+systemd-network:x:995:
+systemd-resolve:x:994:
+systemd-timesync:x:993:
+systemd-bus-proxy:x:992:
+'''
+
+[[file]]
+name = "/lib/terminfo/l/linux"
+source = "files/lib/terminfo/l/linux"
+mode = 0o555
+uid = 0
+gid = 0
+
+
+[[file]]
+name = "/lib/ld-linux-aarch64.so.1"
+mode = 0o555
+
+[[file]]
+name = "/usr/lib/libssl.so.1.1"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libssl.so"
+source = "/usr/lib/libssl.so.1.1"
+mode = 0o555
+
+
+[[file]]
+name = "/usr/lib/libcrypto.so.1.1"
+mode = 0o555
+
+[[file]]
+name = "/lib/libcap.so.2.51"
+mode = 0o555
+
+[[link]]
+name = "/lib/libcap.so.2"
+source = "/lib/libcap.so.2.51"
+
+[[file]]
+name = "/lib/libtinfo.so.5.9"
+mode = 0o555
+
+[[link]]
+name = "/lib/libtinfo.so.5"
+source = "/lib/libtinfo.so.5.9"
+
+[[link]]
+name = "/usr/lib/libcrypto.so"
+source = "/usr/lib/libcrypto.so.1.1"
+mode = 0o555
+
+[[file]]
+name = "/usr/lib/libstdc++.so.6.0.29"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libstdc++.so"
+source = "/usr/lib/libstdc++.so.6.0.29"
+
+[[link]]
+name = "/usr/lib/libstdc++.so.6"
+source = "/usr/lib/libstdc++.so.6.0.29"
+
+[[file]]
+name = "/usr/lib/libsqlite3.so.0.8.6"
+mode = 0o555
+uid = 0
+gid = 0
+
+[[link]]
+name = "/usr/lib/libsqlite3.so"
+source = "/usr/lib/libsqlite3.so.0.8.6"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libsqlite3.so.0"
+source = "/usr/lib/libsqlite3.so.0.8.6"
+mode = 0o555
+
+
+## ACL
+[[file]]
+name = "/usr/lib/libacl.so.1.1.2301"
+strip = true
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libacl.so.1"
+source = "/usr/lib/libacl.so.1.1.2301"
+
+[[link]]
+name = "/usr/lib/libacl.so"
+source = "/usr/lib/libacl.so.1.1.2301"
+
+## LibBLKID
+
+[[file]]
+name = "/lib/libblkid.so.1.1.0"
+strip = true
+mode = 0o555
+
+#[[link]]
+#name = "/lib/libblkid.so.1"
+#source = "/lib/libblkid.so.1.1.0"
+
+[[link]]
+name = "/usr/lib/libblkid.so.1"
+source = "/lib/libblkid.so.1.1.0"
+
+## Lib Crypt
+[[file]]
+name = "/usr/lib/libcrypt.so.2.0.0"
+strip = true
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libcrypt.so.2"
+source = "/usr/lib/libcrypt.so.2.0.0"
+
+[[link]]
+name = "/usr/lib/libcrypt.so"
+source = "/usr/lib/libcrypt.so.2.0.0"
+
+## LZMA
+[[file]]
+name = "/usr/lib/liblzma.so.5.2.5"
+strip = true
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/liblzma.so.5"
+source = "/usr/lib/liblzma.so.5.2.5"
+
+[[link]]
+name = "/usr/lib/liblzma.so"
+source = "/usr/lib/liblzma.so.5.2.5"
+
+## ATTR
+[[file]]
+name = "/usr/lib/libattr.so.1.1.2501"
+strip = true
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libattr.so.1"
+source = "/usr/lib/libattr.so.1.1.2501"
+
+[[link]]
+name = "/usr/lib/libattr.so"
+source = "/usr/lib/libattr.so.1.1.2501"
+
+### libmount
+[[file]]
+name = "/lib/libmount.so.1.1.0"
+strip = true
+mode = 0o555
+
+[[link]]
+name = "/lib/libmount.so.1"
+source = "/lib/libmount.so.1.1.0"
+
+[[link]]
+name = "/usr/lib/libmount.so"
+source = "/lib/libmount.so.1.1.0"
+
+## NSS Libraries
+[[file]]
+name = "/lib/libnss_compat-2.33.so"
+mode = 0o444
+
+[[link]]
+name = "/lib/libnss_compat.so.2"
+source = "/lib/libnss_compat-2.33.so"
+
+[[file]]
+name = "/lib/libnss_files-2.33.so"
+mode = 0o444
+
+[[link]]
+name = "/lib/libnss_files.so.2"
+source = "/lib/libnss_files-2.33.so"
+
+### dbus
+
+[[file]]
+name = "usr/bin/dbus-daemon"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-cleanup-sockets"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-launch"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-monitor"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-run-session"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-send"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-test-tool"
+mode = 0o554
+strip = true
+
+[[file]]
+name = "usr/bin/dbus-update-activation-environment"
+mode = 0o554
+strip = true
+[[file]]
+
+name = "usr/bin/dbus-uuidgen"
+mode = 0o554
+strip = true
+
+#[[file]]
+#name = "/usr/lib/libdbus-1.so.3.19.13"
+#mode = 0o554
+#strip = true
+
+
+#[[link]]
+#name = "usr/lib/libdbus-1.so"
+#source = "/usr/lib/libdbus-1.so.3.19.13"
+#mode = 0o444
+
+## libexpat (dbus dependency)
+[[file]]
+name = "/usr/lib/libexpat.so.1.8.1"
+
+[[link]]
+name = "/usr/lib/libexpat.so"
+source = "/usr/lib/libexpat.so.1.8.1"
+
+[[link]]
+name = "/usr/lib/libexpat.so.1"
+source = "/usr/lib/libexpat.so.1.8.1"
+
+[[file]]
+name = "/lib/libc-2.33.so"
+mode = 0o555
+
+[[link]]
+name = "/lib/libc.so.6"
+source = "/lib/libc-2.33.so"
+
+[[file]]
+name = "/lib/libdl-2.33.so"
+mode = 0o555
+
+[[link]]
+name = "/lib/libdl.so.2"
+source = "/lib/libdl-2.33.so"
+
+[[file]]
+name = "/lib/libgcc_s.so.1"
+mode = 0o555
+
+[[file]]
+name = "/lib/libpthread-2.33.so"
+mode = 0o555
+
+[[link]]
+name = "/lib/libpthread.so.0"
+source = "/lib/libpthread-2.33.so"
+
+[[file]]
+name = "/lib/libm-2.33.so"
+mode = 0o555
+
+[[link]]
+name = "/lib/libm.so.6"
+source = "/lib/libm-2.33.so"
+
+[[file]]
+name = "/lib/libz.so.1.2.11"
+mode = 0o555
+
+[[link]]
+name = "/lib/libz.so.1"
+source = "/lib/libz.so.1.2.11"
+
+[[file]]
+name = "/lib/ld-2.33.so"
+mode = 0o555
+
+[[link]]
+name = "/lib/ld-linux-aarch64.so.1"
+source = "/lib/ld-2.33.so"
+
+
+[[file]]
+name = "/lib/librt-2.33.so"
+strip = true
+mode = 0o555
+
+[[link]]
+name = "/lib/librt.so.1"
+source = "/lib/librt-2.33.so"
+
+[[file]]
+name = "/usr/lib/libseccomp.so.2.5.1"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libseccomp.so"
+source = "/usr/lib/libseccomp.so.2.5.1"
+
+[[link]]
+name = "/usr/lib/libseccomp.so.2"
+source = "/usr/lib/libseccomp.so.2.5.1"
+
+
+[[file]]
+name = "/usr/lib/libdbus-1.so.3.19.13"
+mode = 0o554
+strip = true
+
+[[link]]
+name = "/usr/lib/libdbus-1.so.3"
+source = "/usr/lib/libdbus-1.so.3.19.13"
+mode = 0o444
+
+[[link]]
+name = "/usr/lib/libdbus-1.so"
+source = "/usr/lib/libdbus-1.so.3.19.13"
+mode = 0o444
+
+[[link]]
+name = "usr/lib/libdbus-1.so.3"
+source = "/usr/lib/libdbus-1.so.3.19.13"
+mode = 0o444
+
+[[file]]
+name = "/lib/libutil-2.33.so"
+mode = 0o555
+uid = 0
+gid = 0
+
+[[link]]
+name = "/lib/libutil.so.1"
+source = "/lib/libutil-2.33.so"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libutil.so"
+source = "/lib/libutil.so.1"
+mode = 0o555
+
+[[file]]
+name = "/usr/lib/libkmod.so.2.3.7"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libkmod.so"
+source = "/usr/lib/libkmod.so.2.3.7"
+
+[[link]]
+name = "/usr/lib/libkmod.so.2"
+source = "/usr/lib/libkmod.so.2.3.7"

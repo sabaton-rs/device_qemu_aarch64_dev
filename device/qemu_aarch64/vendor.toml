@@ -1,0 +1,35 @@
+## The contents of the Vendor specific image
+## This mostly contains kernel modules and any other
+## vendor specific content
+
+defaults = [
+{ path = ".*", mode=0, uid=0, gid=0, xattrs=[]}
+]
+
+[[img]]
+name = "vendor.ext2"
+version = "1.0.0"
+image_type = "ext2"
+fs_options = { blocks_count = 2048, log_block_size = 2, extra="", uuid="065bb6b6ab6111eba5c50015add3df0d" }
+
+## Use the multifile to add kernel modules.  Being lazy here.
+[[img.multifile]]
+filter = [
+    ".*fuse.ko",
+    ".*cppc_cpufreq.ko",
+    "bridge.ko",
+    "br_netfilter.ko",
+    "ipv6.ko",
+    "llc.ko",
+    "stp.ko",
+    "modules.alias*",
+    "^modules.builtin$",
+    "^modules.builtin.bin$",
+    "modules.dep*",
+    "modules.order",
+    "modules.devname"]  # Must be a regex. Can be a list of regexes
+source = "lib/modules" # must be a directory. starts searching from here. Note that this is retained 
+dest_append = "dir" #optional directory name to be prefixed when copying to the
+strip = true
+## Permissions are taken from the defaults
+

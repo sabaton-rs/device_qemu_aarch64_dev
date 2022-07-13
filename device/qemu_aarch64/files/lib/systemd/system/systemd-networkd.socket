@@ -1,0 +1,13 @@
+[Unit]
+Description=Network Service Netlink Socket
+ConditionCapability=CAP_NET_ADMIN
+DefaultDependencies=no
+Before=sockets.target
+
+[Socket]
+ReceiveBuffer=64M
+ListenNetlink=route 1361
+PassPacketInfo=yes
+
+[Install]
+WantedBy=sockets.target

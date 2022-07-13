@@ -1,0 +1,77 @@
+[[profile]]
+name = "qemu_aarch64"
+device_id = "645d014b-0518-4a58-9892-c7c7d3cb9ec8"
+version = "0.0.1"
+# This must also be in the Cargo.toml as a feature
+cargo_device_feature = "device_qemu-aarch64-virtual"
+# Use these image files
+images = ["boot.toml","image.toml","vendor.toml","data.toml"]
+## Linux Kernel information
+# Pull the kernel from this location
+#kernel_src = "git@github.com:gregkh/linux.git"
+kernel_src = "https://github.com/gregkh/linux.git"
+# Use this branch
+kernel_checkout = "1cd6e30b83d741562b55bf5b7763b1238a91150c"
+# Kernel configuration to use
+kernel_config = "defconfig"
+# Override the .config of the kernel (Optional)
+kernel_dot_config = "files/kernel_config.release"
+
+#kernel_targets = ["zImage","dtbs"]
+
+target = "aarch64-unknown-linux-gnu"
+flash_layout  = "partition.toml"
+initrd = { image="initrd.toml", target="aarch64-unknown-linux-musl", pack_with_kernel=true}
+
+image_to_partition = [
+    [["boot_a","boot_b"], "boot.fat32", "options"],
+    [["system_a","system_b"],"system.ext2", "options"],  # recovery_a and recovery_b contains the same recovery image. fs type is ext2
+    [["vendor_a","vendor_b"],"vendor.ext2", "options"],  # 
+    [["data"],"data.ext2","options"],
+]
+
+# The raw areas must be defined in partition configuration.
+# image_to_raw= [
+#    ["bootloader","path/to/raw/file"]
+#]
+
+# The vbmeta partitions contain the verity
+# hashes of the provided partitions
+verity_partitions = [
+    [ "vbmeta_a", ["system_a","vendor_a"]],
+    [ "vbmeta_b", ["system_b","vendor_b"]],
+]
+
+### 
+### openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 | openssl pkcs8 -topk8 -nocrypt -outform der > verity_rsa-2048-private-key.pk8
+verity_key = "secrets/verity/verity_rsa-2048-private-key.pk8"
+
+
+[[profile.package]]
+name = "uboot"
+git = {git = "https://github.com/sabaton-rs/u-boot.git", rev="501ebfb5486bad337124acd2cb0a59f9cba1210c"}
+build = """#/bin/sh
+make qemu_arm64_sabaton_defconfig
+make
+cp u-boot.bin $SABATON_DEVICE_DEPLOY
+cat << EOF > $SABATON_DEVICE_DEPLOY/run_qemu.sh
+#!/bin/sh
+qemu-system-aarch64 -machine virt -m 512M -cpu cortex-a57 -bios u-boot.bin -nographic -netdev user,id=net0,hostfwd=tcp::8080-:80 -device e1000,netdev=net0 -drive if=none,file=disk.img,id=mydisk -device nvme,drive=mydisk,serial=foo
+EOF
+"""
+build_args = []
+workdir = "build"
+image_to_raw = [
+    ["uboot","path/to/file/in/working/folder"]
+]
+
+# You can boot this device with this qemu command line
+# qemu-system-aarch64 -machine virt -m 512M -cpu cortex-a57 -bios u-boot.bin -nographic -netdev user,id=net0 -device e1000,netdev=net0 -drive if=none,file=/home/sabaton/workspace/test/target/aarch64-unknown-linux-gnu/release/__device/qemu/deploy/images/disk.img,id=mydisk -device nvme,drive=mydisk,serial=foo
+
+# Creating Verity Keys
+# ``openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:65537 > verity_rsa-2048-private-key.pem``` 
+# ```openssl rsa -in verity_rsa-2048-private-key.pem -pubout > verity_rsa-2048-private-key.pub```
+# ```cat verity_rsa-2048-private-key.pem | openssl pkcs8 -topk8 -nocrypt -outform der > verity_rsa-2048-private-key.pk8```
+
+# Convert the PEM to DER format needed by the verity verification algorithm
+#```openssl rsa -pubin -in verity_rsa-2048-private-key.pub -inform PEM -RSAPublicKey_out -outform DER -out verity_rsa-2048-public-key.der```

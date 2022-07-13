@@ -1,0 +1,17 @@
+# Download Information for the Sabaton NDK toolchains
+
+[target.aarch64-unknown-linux-gnu]
+installed_dir = "/opt/sabaton/0.4"
+toolchain_environment = "environment-setup-armv8a-sabaton-linux"
+
+[target.aarch64-unknown-linux-musl]
+installed_dir = "/opt/sabaton/0.4"
+toolchain_environment = "environment-setup-armv8a-sabaton-linux"
+
+[target.armv7-unknown-linux-gnueabihf]
+installed_dir = "/opt/sabaton/0.4"
+toolchain_environment = "environment-setup-armv7vet2hf-neon-sabaton-linux-gnueabi"
+
+[target.armv7-unknown-linux-musleabihf]
+installed_dir = "/opt/sabaton/0.4"
+toolchain_environment = "environment-setup-armv7vet2hf-neon-sabaton-linux-gnueabi"

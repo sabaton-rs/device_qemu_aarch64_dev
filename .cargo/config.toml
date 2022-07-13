@@ -1,0 +1,8 @@
+[target.aarch64-unknown-linux-gnu]
+linker = "aarch64-sabaton-linux-gcc"
+ar = "aarch64-sabaton-linux-ar"
+rustflags = [ "-C", "link-arg=--sysroot=/opt/sabaton/0.4/sysroots/armv8a-sabaton-linux" ]
+
+[target.aarch64-unknown-linux-musl]
+linker = "/opt/sabaton/0.4/sysroots/x86_64-sabaton-linux/usr/bin/aarch64-sabaton-linux-musl/aarch64-sabaton-linux-musl-gcc"
+rustflags = [ "-C", "target-feature=+crt-static", "-C", "link-arg=--sysroot=/opt/sabaton/0.4/sysroots/armv8a-sabaton-linux", "-C", "link-arg=-lgcc" ]

@@ -1,0 +1,73 @@
+## An image configuration file to craft a custom filesystem image
+defaults = [
+{ path = ".*", mode=0o700, uid=0, gid=0, xattrs=[]}
+]
+
+
+[[img]]
+name = "initrd.cpio"
+version = "1.0.0"
+image_type = "cpio"
+
+
+[[img.dir]]
+name = "/dev"
+
+[[img.dev]]
+name = "/dev/console"
+mode = 0o700
+uid = 0
+gid = 0
+major = 5
+minor =  1
+device_type = "c"
+
+# The kernel expects the initrd init to be at /init
+[[img.crate]]
+name = "/init"
+src_uri = {git = "https://github.com/sabaton-rs/sabaton-initrd.git"}
+executables = [
+        {source = "initrd", target = "/init"}
+]
+mode = 0o500
+uid = 0
+gid = 0
+
+
+[[img.dir]]
+name = "/proc"
+
+[[img.dir]]
+name = "/sys"
+
+[[img.dir]]
+name = "/mnt"
+mode = 0x755
+
+[[img.dir]]
+name = "/idex"
+mode = 0x755
+
+
+[[img.dir]]
+name = "/mnt/system"
+mode = 0x755
+
+[[img.dir]]
+name = "/etc"
+
+[[img.ifile]]
+name = "/etc/fstab"
+source = '''# Fstab for initrd. 
+#<dev>                          <mnt_point>     <type>  <mnt_flags options> <fs_mgr_flags>
+# system partition must be mounted as root.
+/dev/block/by-name/system           /           ext4    ro,noauto,nouser    slotselect,first_stage_mount,verity
+/dev/block/by-name/vendor           /vendor     ext4    ro,noauto,nouser    slotselect,first_stage_mount,verity
+/dev/block/by-name/data             /data       ext4    rw,noauto,nouser    first_stage_mount
+'''
+
+
+[[img.file]]
+name = "/etc/veritykey.pub"
+source = "secrets/verity/verity_rsa-2048-public-key.der"
+mode = 0o500

@@ -1,0 +1,5 @@
+[D-BUS Service]
+Name=org.freedesktop.resolve1
+Exec=/bin/false
+User=root
+SystemdService=dbus-org.freedesktop.resolve1.service
