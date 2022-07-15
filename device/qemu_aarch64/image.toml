@@ -1,52 +1,52 @@
 defaults = [
-        { path = ".*", mode=0o544 ,uid=0, gid=0, xattrs=[ ["",""]]},
-    ]
+  {path = ".*", mode = 0o544, uid = 0, gid = 0, xattrs = [["", ""]]},
+]
 
 [[img]]
+fs_options = {blocks_count = 2048, log_block_size = 2, extra = "", uuid = "065bb6b6ab6111eba5c500155dd3df0d"}
+image_type = "ext2"
+include = ["base_files.toml"]
 name = "system.ext2"
 version = "0.0.1"
-image_type = "ext2"
-fs_options = { blocks_count = 2048, log_block_size = 2, extra="", uuid="065bb6b6ab6111eba5c500155dd3df0d" }
-include = ["base_files.toml"]
 
 [[img.crate]]
-name = "/sbin/parsec"
-src_uri = {git = "https://github.com/parallaxsecond/parsec.git", rev="45a21bc7bd34b039b2bb8e3e045ea7ea058b7bfa"}
 executables = [
-        {source = "parsec", target = "/sbin/parsec"}
+  {source = "parsec", target = "/sbin/parsec"},
 ]
+name = "/sbin/parsec"
+src_uri = {git = "https://github.com/parallaxsecond/parsec.git", rev = "45a21bc7bd34b039b2bb8e3e045ea7ea058b7bfa"}
 # Specify the executable when the filename is different from the source-name
 executable = "parsec"
 mode = 0o555
 # SecureElement has uid/gid 1068
-uid = 1068
+features = ["direct-authenticator", "pkcs11-provider"]
 gid = 1068
-features = ["direct-authenticator","pkcs11-provider"]
+uid = 1068
 
 [[img.crate]]
+executables = [
+  {source = "exa", target = "/bin/ls"},
+]
+gid = 0
+mode = 0o555
 name = "/bin/ls"
 src_uri = {git = "https://github.com/sabaton-rs/exa.git"}
-executables = [
-        {source = "exa", target = "/bin/ls"}
-]
-mode = 0o555
 uid = 0
-gid = 0
 
 [[img.crate]]
-name = "/sbin/vpncloud"
-src_uri = { git = "https://github.com/dswd/vpncloud.git", rev= "16d5d47f01240e4f64896f64fa3f38115d4cc3d3"}
 executables = [
-        {source = "vpncloud", target = "/sbin/vpncloud"}
+  {source = "vpncloud", target = "/sbin/vpncloud"},
 ]
 mode = 0o555
+name = "/sbin/vpncloud"
+src_uri = {git = "https://github.com/dswd/vpncloud.git", rev = "16d5d47f01240e4f64896f64fa3f38115d4cc3d3"}
 
 [[img.file]]
+gid = 0
+mode = 0o555
 name = "/usr/bin/zsh"
 source = "usr/bin/zsh"
-mode = 0o555
 uid = 0
-gid = 0
 
 ### dropbear
 #[[img.file]]
@@ -60,42 +60,42 @@ gid = 0
 #mode = 0o600
 
 [[img.file]]
+gid = 0
+mode = 0o500
 name = "/usr/sbin/dropbear"
 source = "usr/sbin/dropbear"
-mode = 0o500
 uid = 0
-gid = 0
 
 [[img.file]]
+gid = 0
+mode = 0o500
 name = "/usr/sbin/dropbearmulti"
 source = "usr/sbin/dropbearmulti"
-mode = 0o500
 uid = 0
-gid = 0
 
 [[img.link]]
+mode = 0o555
 name = "/usr/bin/scp"
 source = "/usr/sbin/dropbearmulti"
-mode = 0o555
 
 [[img.link]]
+mode = 0o555
 name = "/usr/bin/ssh"
 source = "/usr/sbin/dropbearmulti"
-mode = 0o555
 
 #### softhsm
 [[img.file]]
-name = "/usr/bin/softhsm2-util"
-mode = 0o500
-uid = 0
 gid = 0
+mode = 0o500
+name = "/usr/bin/softhsm2-util"
+uid = 0
 
 # Only secure element has access to this library
 [[img.file]]
-name = "/usr/lib/softhsm/libsofthsm2.so"
-mode = 0o500
-uid = 1068
 gid = 1068
+mode = 0o500
+name = "/usr/lib/softhsm/libsofthsm2.so"
+uid = 1068
 
 # Parsec configuration
 #[[img.file]]
@@ -108,36 +108,35 @@ gid = 1068
 ###### Utilities
 
 [[img.crate]]
+executables = [
+  {source = "bat", target = "/bin/bat"},
+]
+features = ["minimal-application"]
+gid = 0
+mode = 0o500
 name = "/bin/bat"
 src_uri = {git = "https://github.com/sharkdp/bat.git"}
-executables = [
-	{source = "bat", target = "/bin/bat"}
-]
-mode = 0o500
 uid = 0
-gid = 0
-features = ["minimal-application"]
 
 [[img.crate]]
+executables = [
+  {source = "procs", target = "/bin/procs"},
+]
+gid = 0
+mode = 0o500
 name = "/bin/procs"
 src_uri = {git = "https://github.com/dalance/procs.git"}
-executables = [
-	{source = "procs", target = "/bin/procs"}
-]
-mode = 0o500
 uid = 0
-gid = 0
 
 [[img.crate]]
+executables = [
+  {source = "kibi", target = "/bin/kibi"},
+]
+gid = 0
+mode = 0o500
 name = "/bin/kibi"
 src_uri = {git = "https://github.com/ilai-deutel/kibi.git"}
-executables = [
-	{source = "kibi", target = "/bin/kibi"}
-]
-mode = 0o500
 uid = 0
-gid = 0
-
 
 ## Debug Applications
 
@@ -154,92 +153,92 @@ name = "/etc/systemd/system.conf"
 source = """#
 [Manager]
 LogLevel=debug
-""" 
+"""
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/system-generators/systemd-getty-generator"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-journald"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-cgroups-agent"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-hibernate-resume"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-hostnamed"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-modules-load"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-networkd"
 strip = true
-mode = 0o555
 uid = 996
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-resolved"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-sysctl"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-logind"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/systemd-udevd"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/bin/networkctl"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/bin/systemctl"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/bin/journalctl"
 strip = true
-mode = 0o555
 
 [[img.file]]
+mode = 0o555
 name = "/lib/systemd/libsystemd-shared-248.so"
 strip = true
-mode = 0o555
 
 [[img.file]]
-name = "/lib/libsystemd.so.0.31.0"
 mode = 0o555
+name = "/lib/libsystemd.so.0.31.0"
 
 [[img.link]]
 name = "/lib/libsystemd.so.0"
@@ -253,8 +252,6 @@ source = "/lib/libsystemd.so.0.31.0"
 name = "/sbin/init"
 source = "/lib/systemd/systemd"
 
-
-
 ## Machine ID - leaving empty
 [[img.ifile]]
 name = "/etc/machine-id"
@@ -262,54 +259,54 @@ source = ""
 
 ### Startup files
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/default.target"
 source = "files/lib/systemd/system/default.target"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/debug-shell.service"
 source = "files/lib/systemd/system/debug-shell.service"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/serial-getty@.service"
 source = "files/lib/systemd/system/serial-getty@.service"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/systemd-journald.service"
 source = "files/lib/systemd/system/systemd-journald.service"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/systemd-udevd.service"
 source = "files/lib/systemd/system/systemd-udevd.service"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/multi-user.target"
 source = "files/lib/systemd/system/multi-user.target"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/tmp.mount"
 source = "files/lib/systemd/system/tmp.mount"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/systemd-journald.socket"
 source = "files/lib/systemd/system/systemd-journald.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/systemd-networkd.socket"
 source = "files/lib/systemd/system/systemd-networkd.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/systemd-networkd.service"
 source = "files/lib/systemd/system/systemd-networkd.service"
-mode = 0o444
 
 [[img.file]]
 name = "/lib/systemd/system/systemd-resolved.service"
@@ -317,50 +314,50 @@ name = "/lib/systemd/system/systemd-resolved.service"
 mode = 0o444
 
 [[img.file]]
-name = "/lib/systemd/system/dbus.service"
 mode = 0o444
+name = "/lib/systemd/system/dbus.service"
 
 [[img.file]]
-name = "/lib/systemd/system/dbus.socket"
 mode = 0o444
+name = "/lib/systemd/system/dbus.socket"
 
 [[img.link]]
 name = "/lib/systemd/system/sockets.target.wants/dbus.socket"
 source = "../dbus.socket"
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/sockets.target.wants/systemd-initctl.socket"
 source = "files/lib/systemd/system/systemd-initctl.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/sockets.target.wants/systemd-journald-audit.socket"
 source = "files/lib/systemd/system/systemd-journald-audit.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/sockets.target.wants/systemd-journald-dev-log.socket"
 source = "files/lib/systemd/system/systemd-journald-dev-log.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/sockets.target.wants/systemd-journald.socket"
 source = "files/lib/systemd/system/systemd-journald.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/sockets.target.wants/systemd-udevd-control.socket"
 source = "files/lib/systemd/system/systemd-udevd-control.socket"
-mode = 0o444
 
 [[img.file]]
+mode = 0o444
 name = "/lib/systemd/system/sockets.target.wants/systemd-udevd-kernel.socket"
 source = "files/lib/systemd/system/systemd-udevd-kernel.socket"
-mode = 0o444
 
 [[img.file]]
-name = "/lib/systemd/system/systemd-modules-load.service"
 mode = 0o444
+name = "/lib/systemd/system/systemd-modules-load.service"
 
 #### DEFAULT TARGETS ####
 [[img.dir]]
@@ -393,10 +390,9 @@ Conflicts=emergency.service emergency.target
 
 """
 
-
 [[img.ifile]]
-name = "/etc/nsswitch.conf"
 mode = 0o444
+name = "/etc/nsswitch.conf"
 source = """# /etc/nsswitch.conf
 passwd:         files systemd
 group:          files systemd
@@ -413,7 +409,6 @@ rpc:            db files
 
 netgroup:       nis
 """
-
 
 ## DBUS Configuration ##
 [[img.file]]
@@ -433,14 +428,14 @@ name = "/usr/share/dbus-1/services/org.freedesktop.systemd1.service"
 source = "files/usr/share/dbus-1/system-services/org.freedesktop.systemd1.service"
 
 [[img.file]]
+mode = 0o554
 name = "/bin/ifconfig"
 source = "/bin/ifconfig.net-tools"
-mode = 0o554
-
 
 ### NETWORK CONFIGURATION 
 
 [[img.ifile]]
+mode = 0o444
 name = "/etc/systemd/network/20-eth0.network"
 source = """##
 [Match]
@@ -453,9 +448,9 @@ RequiredForOnline=yes
 [Network]
 DHCP=ipv4
 """
-mode = 0o444
 
 [[img.ifile]]
+mode = 0o444
 name = "/etc/systemd/network/uplink.network"
 source = """##
 [Match]
@@ -464,18 +459,18 @@ Name=eth0
 [Network]
 Bridge=br0
 """
-mode = 0o444
 
 [[img.ifile]]
+mode = 0o444
 name = "/etc/systemd/network/br0.netdev"
 source = """##
 [NetDev]
 Name=br0
 Kind=bridge
 """
-mode = 0o444
 
 [[img.ifile]]
+mode = 0o444
 name = "/etc/systemd/network/br0.network"
 source = """##
 [Match]
@@ -486,12 +481,10 @@ DNS=192.168.250.1
 Address=192.168.250.33/24
 Gateway=192.168.250.1
 """
-mode = 0o444
 
 [[img.link]]
 name = "/lib/modules"
 source = "/vendor/lib/modules"
-
 
 ## Module Load configuration
 [[img.ifile]]
@@ -506,8 +499,6 @@ bridge
 ## INSMOD
 
 [[img.file]]
+mode = 0o555
 name = "/sbin/insmod"
 source = "/sbin/insmod.kmod"
-mode = 0o555
-
-

@@ -1,40 +1,40 @@
 # A directory
-[[dir]] 
-name = "/sbin"
+[[dir]]
 mode = 0o555
+name = "/sbin"
 
-[[dir]] 
+[[dir]]
+mode = 0o755
 name = "/vendor"
-mode = 0o755
 
-[[dir]] 
+[[dir]]
+mode = 0o755
 name = "/oem"
-mode = 0o755
 
-[[dir]] 
+[[dir]]
+mode = 0o755
 name = "/dev"
-mode = 0o755
 
-[[dir]] 
+[[dir]]
+mode = 0o755
 name = "/proc"
-mode = 0o755
 
-[[dir]] 
+[[dir]]
+mode = 0o500
 name = "/sys"
-mode = 0o500
 
-[[dir]] 
+[[dir]]
+mode = 0o500
 name = "/mnt"
-mode = 0o500
 
-[[dir]] 
-name = "/data"
+[[dir]]
 mode = 0o755
+name = "/data"
 
 # Systemd needs a /run directory
-[[dir]] 
-name = "/run"
+[[dir]]
 mode = 0o755
+name = "/run"
 
 [[ifile]]
 name = "/etc/passwd"
@@ -120,55 +120,53 @@ systemd-bus-proxy:x:992:
 '''
 
 [[file]]
+gid = 0
+mode = 0o555
 name = "/lib/terminfo/l/linux"
 source = "files/lib/terminfo/l/linux"
-mode = 0o555
 uid = 0
-gid = 0
-
 
 [[file]]
+mode = 0o555
 name = "/lib/ld-linux-aarch64.so.1"
-mode = 0o555
 
 [[file]]
-name = "/usr/lib/libssl.so.1.1"
 mode = 0o555
+name = "/usr/lib/libssl.so.1.1"
 
 [[link]]
+mode = 0o555
 name = "/usr/lib/libssl.so"
 source = "/usr/lib/libssl.so.1.1"
-mode = 0o555
-
 
 [[file]]
+mode = 0o555
 name = "/usr/lib/libcrypto.so.1.1"
-mode = 0o555
 
 [[file]]
-name = "/lib/libcap.so.2.51"
 mode = 0o555
+name = "/lib/libcap.so.2.51"
 
 [[link]]
 name = "/lib/libcap.so.2"
 source = "/lib/libcap.so.2.51"
 
 [[file]]
-name = "/lib/libtinfo.so.5.9"
 mode = 0o555
+name = "/lib/libtinfo.so.5.9"
 
 [[link]]
 name = "/lib/libtinfo.so.5"
 source = "/lib/libtinfo.so.5.9"
 
 [[link]]
+mode = 0o555
 name = "/usr/lib/libcrypto.so"
 source = "/usr/lib/libcrypto.so.1.1"
-mode = 0o555
 
 [[file]]
-name = "/usr/lib/libstdc++.so.6.0.29"
 mode = 0o555
+name = "/usr/lib/libstdc++.so.6.0.29"
 
 [[link]]
 name = "/usr/lib/libstdc++.so"
@@ -179,27 +177,26 @@ name = "/usr/lib/libstdc++.so.6"
 source = "/usr/lib/libstdc++.so.6.0.29"
 
 [[file]]
-name = "/usr/lib/libsqlite3.so.0.8.6"
-mode = 0o555
-uid = 0
 gid = 0
+mode = 0o555
+name = "/usr/lib/libsqlite3.so.0.8.6"
+uid = 0
 
 [[link]]
+mode = 0o555
 name = "/usr/lib/libsqlite3.so"
 source = "/usr/lib/libsqlite3.so.0.8.6"
-mode = 0o555
 
 [[link]]
+mode = 0o555
 name = "/usr/lib/libsqlite3.so.0"
 source = "/usr/lib/libsqlite3.so.0.8.6"
-mode = 0o555
-
 
 ## ACL
 [[file]]
+mode = 0o555
 name = "/usr/lib/libacl.so.1.1.2301"
 strip = true
-mode = 0o555
 
 [[link]]
 name = "/usr/lib/libacl.so.1"
@@ -212,9 +209,9 @@ source = "/usr/lib/libacl.so.1.1.2301"
 ## LibBLKID
 
 [[file]]
+mode = 0o555
 name = "/lib/libblkid.so.1.1.0"
 strip = true
-mode = 0o555
 
 #[[link]]
 #name = "/lib/libblkid.so.1"
@@ -226,9 +223,9 @@ source = "/lib/libblkid.so.1.1.0"
 
 ## Lib Crypt
 [[file]]
+mode = 0o555
 name = "/usr/lib/libcrypt.so.2.0.0"
 strip = true
-mode = 0o555
 
 [[link]]
 name = "/usr/lib/libcrypt.so.2"
@@ -240,9 +237,9 @@ source = "/usr/lib/libcrypt.so.2.0.0"
 
 ## LZMA
 [[file]]
+mode = 0o555
 name = "/usr/lib/liblzma.so.5.2.5"
 strip = true
-mode = 0o555
 
 [[link]]
 name = "/usr/lib/liblzma.so.5"
@@ -254,9 +251,9 @@ source = "/usr/lib/liblzma.so.5.2.5"
 
 ## ATTR
 [[file]]
+mode = 0o555
 name = "/usr/lib/libattr.so.1.1.2501"
 strip = true
-mode = 0o555
 
 [[link]]
 name = "/usr/lib/libattr.so.1"
@@ -268,9 +265,9 @@ source = "/usr/lib/libattr.so.1.1.2501"
 
 ### libmount
 [[file]]
+mode = 0o555
 name = "/lib/libmount.so.1.1.0"
 strip = true
-mode = 0o555
 
 [[link]]
 name = "/lib/libmount.so.1"
@@ -282,16 +279,16 @@ source = "/lib/libmount.so.1.1.0"
 
 ## NSS Libraries
 [[file]]
-name = "/lib/libnss_compat-2.33.so"
 mode = 0o444
+name = "/lib/libnss_compat-2.33.so"
 
 [[link]]
 name = "/lib/libnss_compat.so.2"
 source = "/lib/libnss_compat-2.33.so"
 
 [[file]]
-name = "/lib/libnss_files-2.33.so"
 mode = 0o444
+name = "/lib/libnss_files-2.33.so"
 
 [[link]]
 name = "/lib/libnss_files.so.2"
@@ -300,55 +297,54 @@ source = "/lib/libnss_files-2.33.so"
 ### dbus
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-daemon"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-cleanup-sockets"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-launch"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-monitor"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-run-session"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-send"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-test-tool"
-mode = 0o554
 strip = true
 
 [[file]]
+mode = 0o554
 name = "usr/bin/dbus-update-activation-environment"
-mode = 0o554
 strip = true
 [[file]]
 
-name = "usr/bin/dbus-uuidgen"
 mode = 0o554
+name = "usr/bin/dbus-uuidgen"
 strip = true
 
 #[[file]]
 #name = "/usr/lib/libdbus-1.so.3.19.13"
 #mode = 0o554
 #strip = true
-
 
 #[[link]]
 #name = "usr/lib/libdbus-1.so"
@@ -368,70 +364,69 @@ name = "/usr/lib/libexpat.so.1"
 source = "/usr/lib/libexpat.so.1.8.1"
 
 [[file]]
-name = "/lib/libc-2.33.so"
 mode = 0o555
+name = "/lib/libc-2.33.so"
 
 [[link]]
 name = "/lib/libc.so.6"
 source = "/lib/libc-2.33.so"
 
 [[file]]
-name = "/lib/libdl-2.33.so"
 mode = 0o555
+name = "/lib/libdl-2.33.so"
 
 [[link]]
 name = "/lib/libdl.so.2"
 source = "/lib/libdl-2.33.so"
 
 [[file]]
-name = "/lib/libgcc_s.so.1"
 mode = 0o555
+name = "/lib/libgcc_s.so.1"
 
 [[file]]
-name = "/lib/libpthread-2.33.so"
 mode = 0o555
+name = "/lib/libpthread-2.33.so"
 
 [[link]]
 name = "/lib/libpthread.so.0"
 source = "/lib/libpthread-2.33.so"
 
 [[file]]
-name = "/lib/libm-2.33.so"
 mode = 0o555
+name = "/lib/libm-2.33.so"
 
 [[link]]
 name = "/lib/libm.so.6"
 source = "/lib/libm-2.33.so"
 
 [[file]]
-name = "/lib/libz.so.1.2.11"
 mode = 0o555
+name = "/lib/libz.so.1.2.11"
 
 [[link]]
 name = "/lib/libz.so.1"
 source = "/lib/libz.so.1.2.11"
 
 [[file]]
-name = "/lib/ld-2.33.so"
 mode = 0o555
+name = "/lib/ld-2.33.so"
 
 [[link]]
 name = "/lib/ld-linux-aarch64.so.1"
 source = "/lib/ld-2.33.so"
 
-
 [[file]]
+mode = 0o555
 name = "/lib/librt-2.33.so"
 strip = true
-mode = 0o555
 
 [[link]]
 name = "/lib/librt.so.1"
 source = "/lib/librt-2.33.so"
 
 [[file]]
-name = "/usr/lib/libseccomp.so.2.5.1"
 mode = 0o555
+name = "/usr/lib/libseccomp.so.2.5.1"
 
 [[link]]
 name = "/usr/lib/libseccomp.so"
@@ -441,46 +436,45 @@ source = "/usr/lib/libseccomp.so.2.5.1"
 name = "/usr/lib/libseccomp.so.2"
 source = "/usr/lib/libseccomp.so.2.5.1"
 
-
 [[file]]
-name = "/usr/lib/libdbus-1.so.3.19.13"
 mode = 0o554
+name = "/usr/lib/libdbus-1.so.3.19.13"
 strip = true
 
 [[link]]
+mode = 0o444
 name = "/usr/lib/libdbus-1.so.3"
 source = "/usr/lib/libdbus-1.so.3.19.13"
-mode = 0o444
 
 [[link]]
+mode = 0o444
 name = "/usr/lib/libdbus-1.so"
 source = "/usr/lib/libdbus-1.so.3.19.13"
-mode = 0o444
 
 [[link]]
+mode = 0o444
 name = "usr/lib/libdbus-1.so.3"
 source = "/usr/lib/libdbus-1.so.3.19.13"
-mode = 0o444
 
 [[file]]
-name = "/lib/libutil-2.33.so"
-mode = 0o555
-uid = 0
 gid = 0
+mode = 0o555
+name = "/lib/libutil-2.33.so"
+uid = 0
 
 [[link]]
+mode = 0o555
 name = "/lib/libutil.so.1"
 source = "/lib/libutil-2.33.so"
-mode = 0o555
 
 [[link]]
+mode = 0o555
 name = "/usr/lib/libutil.so"
 source = "/lib/libutil.so.1"
-mode = 0o555
 
 [[file]]
-name = "/usr/lib/libkmod.so.2.3.7"
 mode = 0o555
+name = "/usr/lib/libkmod.so.2.3.7"
 
 [[link]]
 name = "/usr/lib/libkmod.so"
@@ -491,17 +485,17 @@ name = "/usr/lib/libkmod.so.2"
 source = "/usr/lib/libkmod.so.2.3.7"
 
 [[file]]
-name = "/usr/lib/libddsc.so.0.9.1"
 mode = 0o555
+name = "/usr/lib/libddsc.so.0.9.1"
 
 [[link]]
 name = "/usr/lib/libddsc.so.0"
 source = "/usr/lib/libddsc.so.0.9.1"
 
 [[file]]
-name = "/usr/lib/libdds_security_ac.so"
 mode = 0o555
+name = "/usr/lib/libdds_security_ac.so"
 
 [[file]]
-name = "/usr/lib/libdds_security_auth.so"
 mode = 0o555
+name = "/usr/lib/libdds_security_auth.so"
