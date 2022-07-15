@@ -489,3 +489,19 @@ source = "/usr/lib/libkmod.so.2.3.7"
 [[link]]
 name = "/usr/lib/libkmod.so.2"
 source = "/usr/lib/libkmod.so.2.3.7"
+
+[[file]]
+name = "/usr/lib/libddsc.so.0.9.1"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libddsc.so.0"
+source = "/usr/lib/libddsc.so.0.9.1"
+
+[[file]]
+name = "/usr/lib/libdds_security_ac.so"
+mode = 0o555
+
+[[file]]
+name = "/usr/lib/libdds_security_auth.so"
+mode = 0o555
