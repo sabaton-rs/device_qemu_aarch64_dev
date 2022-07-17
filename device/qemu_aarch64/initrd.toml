@@ -1,35 +1,38 @@
 ## An image configuration file to craft a custom filesystem image
 defaults = [
-  {path = ".*", mode = 0o700, uid = 0, gid = 0, xattrs = []},
+{ path = ".*", mode=0o700, uid=0, gid=0, xattrs=[]}
 ]
 
+
 [[img]]
-image_type = "cpio"
 name = "initrd.cpio"
 version = "1.0.0"
+image_type = "cpio"
+
 
 [[img.dir]]
 name = "/dev"
 
 [[img.dev]]
-device_type = "c"
+name = "/dev/console"
+mode = 0o700
+uid = 0
 gid = 0
 major = 5
-minor = 1
-mode = 0o700
-name = "/dev/console"
-uid = 0
+minor =  1
+device_type = "c"
 
 # The kernel expects the initrd init to be at /init
 [[img.crate]]
-executables = [
-  {source = "initrd", target = "/init"},
-]
-gid = 0
-mode = 0o500
 name = "/init"
 src_uri = {git = "https://github.com/sabaton-rs/sabaton-initrd.git"}
+executables = [
+        {source = "initrd", target = "/init"}
+]
+mode = 0o500
 uid = 0
+gid = 0
+
 
 [[img.dir]]
 name = "/proc"
@@ -38,16 +41,17 @@ name = "/proc"
 name = "/sys"
 
 [[img.dir]]
-mode = 0x755
 name = "/mnt"
+mode = 0x755
 
 [[img.dir]]
-mode = 0x755
 name = "/idex"
+mode = 0x755
+
 
 [[img.dir]]
-mode = 0x755
 name = "/mnt/system"
+mode = 0x755
 
 [[img.dir]]
 name = "/etc"
@@ -62,7 +66,8 @@ source = '''# Fstab for initrd.
 /dev/block/by-name/data             /data       ext4    rw,noauto,nouser    first_stage_mount
 '''
 
+
 [[img.file]]
-mode = 0o500
 name = "/etc/veritykey.pub"
 source = "secrets/verity/verity_rsa-2048-public-key.der"
+mode = 0o500

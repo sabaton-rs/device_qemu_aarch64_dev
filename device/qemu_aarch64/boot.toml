@@ -1,25 +1,26 @@
 defaults = [
-  {path = ".*", mode = 0o544, uid = 0, gid = 0, xattrs = [["", ""]]},
-]
+        { path = ".*", mode=0o544 ,uid=0, gid=0, xattrs=[ ["",""]]},
+    ]
 
 [[img]]
-image_type = "fat32"
 name = "boot.fat32"
 version = "0.0.1"
+image_type = "fat32"
 # This may be overridden
-fs_options = {blocks_count = 20000, log_block_size = 2, extra = "", uuid = "065bb6b6ab6111eba5c500155dd3df0d"}
+fs_options = { blocks_count = 20000, log_block_size = 2, extra="", uuid="065bb6b6ab6111eba5c500155dd3df0d" }
 
 # A file copied from the build output
 [[img.file]]
-gid = 0
-mode = 0o777
 name = "vmlinuz"
-source = "boot/vmlinuz-5.10.57"
+mode = 0o777
 uid = 0
+gid = 0
+source = "boot/vmlinuz-5.10.57"
 
 [[img.file]]
-gid = 0
-mode = 0o777
 name = "System.map"
-source = "boot/System.map-5.10.57"
+mode = 0o777
 uid = 0
+gid = 0
+source = "boot/System.map-5.10.57"
+
