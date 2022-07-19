@@ -153,6 +153,20 @@ gid = 0
 
 ## Debug Applications
 
+##### WARNING: Test only. 
+#### License: GPLv3
+[[img.crate]]
+name = "/bin/ping"
+src_uri = {git = "https://github.com/k4yt3x/rustyping.git", rev="a842d7c3665294f4f9a9e7d64bfb1a89a9363bb5"}
+executables = [
+        {source = "rp", target = "/bin/ping"}
+]
+# Specify the executable when the filename is different from the source-name
+executable = "rp"
+mode = 0o500
+uid = 0
+gid = 0
+
 ## Agetty
 [[img.file]]
 name = "/sbin/agetty"
@@ -245,21 +259,21 @@ strip = true
 mode = 0o555
 
 [[img.file]]
-name = "/lib/systemd/libsystemd-shared-248.so"
+name = "/lib/systemd/libsystemd-shared-250.so"
 strip = true
 mode = 0o555
 
 [[img.file]]
-name = "/lib/libsystemd.so.0.31.0"
+name = "/lib/libsystemd.so.0.33.0"
 mode = 0o555
 
 [[img.link]]
 name = "/lib/libsystemd.so.0"
-source = "/lib/libsystemd.so.0.31.0"
+source = "/lib/libsystemd.so.0.33.0"
 
 [[img.link]]
 name = "/lib/libsystemd.so"
-source = "/lib/libsystemd.so.0.31.0"
+source = "/lib/libsystemd.so.0.33.0"
 
 [[img.link]]
 name = "/sbin/init"
@@ -330,7 +344,7 @@ mode = 0o444
 
 [[img.file]]
 name = "/lib/systemd/system/systemd-resolved.service"
-#source = "files/lib/systemd/system/systemd-networkd.service"
+source = "files/lib/systemd/system/systemd-resolved.service"
 mode = 0o444
 
 [[img.file]]
@@ -405,6 +419,10 @@ mode = 0o444
 
 [[img.file]]
 name = "/usr/share/dbus-1/system.d/org.freedesktop.network1.conf"
+mode = 0o444
+
+[[img.file]]
+name = "/usr/share/dbus-1/system.d/org.freedesktop.resolve1.conf"
 mode = 0o444
 
 [[img.ifile]]
@@ -622,4 +640,8 @@ FallbackDNS=1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4 2606:4700:4700::1111 2001:4860:4860:
 #ResolveUnicastSingleLabel=no
 """
 
+# SystemD creates the resolv.conf
+[[img.link]]
+name = "/etc/resolv.conf"
+source = "/run/systemd/resolve/resolv.conf"
 

@@ -36,6 +36,11 @@ mode = 0o755
 name = "/run"
 mode = 0o755
 
+# Systemd needs a /tmp directory
+[[dir]] 
+name = "/tmp"
+mode = 0o755
+
 [[ifile]]
 name = "/etc/passwd"
 source = '''root:x:0:0:root:/home/root:/bin/sh
@@ -126,32 +131,26 @@ mode = 0o555
 uid = 0
 gid = 0
 
-
 [[file]]
-name = "/lib/ld-linux-aarch64.so.1"
-mode = 0o555
-
-[[file]]
-name = "/usr/lib/libssl.so.1.1"
+name = "/usr/lib/libssl.so.3"
 mode = 0o555
 
 [[link]]
 name = "/usr/lib/libssl.so"
-source = "/usr/lib/libssl.so.1.1"
-mode = 0o555
-
-
-[[file]]
-name = "/usr/lib/libcrypto.so.1.1"
+source = "/usr/lib/libssl.so.3"
 mode = 0o555
 
 [[file]]
-name = "/lib/libcap.so.2.51"
+name = "/usr/lib/libcrypto.so.3"
+mode = 0o555
+
+[[file]]
+name = "/lib/libcap.so.2.63"
 mode = 0o555
 
 [[link]]
 name = "/lib/libcap.so.2"
-source = "/lib/libcap.so.2.51"
+source = "/lib/libcap.so.2.63"
 
 [[file]]
 name = "/lib/libtinfo.so.5.9"
@@ -163,7 +162,7 @@ source = "/lib/libtinfo.so.5.9"
 
 [[link]]
 name = "/usr/lib/libcrypto.so"
-source = "/usr/lib/libcrypto.so.1.1"
+source = "/usr/lib/libcrypto.so.3"
 mode = 0o555
 
 [[file]]
@@ -216,9 +215,9 @@ name = "/lib/libblkid.so.1.1.0"
 strip = true
 mode = 0o555
 
-#[[link]]
-#name = "/lib/libblkid.so.1"
-#source = "/lib/libblkid.so.1.1.0"
+[[link]]
+name = "/lib/libblkid.so.1"
+source = "/lib/libblkid.so.1.1.0"
 
 [[link]]
 name = "/usr/lib/libblkid.so.1"
@@ -282,20 +281,16 @@ source = "/lib/libmount.so.1.1.0"
 
 ## NSS Libraries
 [[file]]
-name = "/lib/libnss_compat-2.33.so"
-mode = 0o444
-
-[[link]]
 name = "/lib/libnss_compat.so.2"
-source = "/lib/libnss_compat-2.33.so"
+mode = 0o444
 
 [[file]]
-name = "/lib/libnss_files-2.33.so"
+name = "/lib/libnss_files.so.2"
 mode = 0o444
 
-[[link]]
-name = "/lib/libnss_files.so.2"
-source = "/lib/libnss_files-2.33.so"
+[[file]]
+name = "/bin/mount"
+mode = 0o500
 
 ### dbus
 
@@ -338,70 +333,44 @@ strip = true
 name = "usr/bin/dbus-update-activation-environment"
 mode = 0o554
 strip = true
-[[file]]
 
+
+[[file]]
 name = "usr/bin/dbus-uuidgen"
 mode = 0o554
 strip = true
 
-#[[file]]
-#name = "/usr/lib/libdbus-1.so.3.19.13"
-#mode = 0o554
-#strip = true
-
-
-#[[link]]
-#name = "usr/lib/libdbus-1.so"
-#source = "/usr/lib/libdbus-1.so.3.19.13"
-#mode = 0o444
-
 ## libexpat (dbus dependency)
 [[file]]
-name = "/usr/lib/libexpat.so.1.8.1"
+name = "/usr/lib/libexpat.so.1.8.7"
 
 [[link]]
 name = "/usr/lib/libexpat.so"
-source = "/usr/lib/libexpat.so.1.8.1"
+source = "/usr/lib/libexpat.so.1.8.7"
 
 [[link]]
 name = "/usr/lib/libexpat.so.1"
-source = "/usr/lib/libexpat.so.1.8.1"
+source = "/usr/lib/libexpat.so.1.8.7"
 
 [[file]]
-name = "/lib/libc-2.33.so"
-mode = 0o555
-
-[[link]]
 name = "/lib/libc.so.6"
-source = "/lib/libc-2.33.so"
-
-[[file]]
-name = "/lib/libdl-2.33.so"
 mode = 0o555
 
-[[link]]
+[[file]]
 name = "/lib/libdl.so.2"
-source = "/lib/libdl-2.33.so"
+mode = 0o555
 
 [[file]]
 name = "/lib/libgcc_s.so.1"
 mode = 0o555
 
 [[file]]
-name = "/lib/libpthread-2.33.so"
-mode = 0o555
-
-[[link]]
 name = "/lib/libpthread.so.0"
-source = "/lib/libpthread-2.33.so"
+mode = 0o555
 
 [[file]]
-name = "/lib/libm-2.33.so"
-mode = 0o555
-
-[[link]]
 name = "/lib/libm.so.6"
-source = "/lib/libm-2.33.so"
+mode = 0o555
 
 [[file]]
 name = "/lib/libz.so.1.2.11"
@@ -412,22 +381,13 @@ name = "/lib/libz.so.1"
 source = "/lib/libz.so.1.2.11"
 
 [[file]]
-name = "/lib/ld-2.33.so"
-mode = 0o555
-
-[[link]]
 name = "/lib/ld-linux-aarch64.so.1"
-source = "/lib/ld-2.33.so"
-
+mode = 0o555
 
 [[file]]
-name = "/lib/librt-2.33.so"
+name = "/lib/librt.so.1"
 strip = true
 mode = 0o555
-
-[[link]]
-name = "/lib/librt.so.1"
-source = "/lib/librt-2.33.so"
 
 [[file]]
 name = "/usr/lib/libseccomp.so.2.5.1"
@@ -441,20 +401,27 @@ source = "/usr/lib/libseccomp.so.2.5.1"
 name = "/usr/lib/libseccomp.so.2"
 source = "/usr/lib/libseccomp.so.2.5.1"
 
+[[file]]
+name = "/lib/libselinux.so.1"
+mode = 0o555
+
+[[link]]
+name = "/usr/lib/libselinux.so"
+source = "/lib/libselinux.so.1"
 
 [[file]]
-name = "/usr/lib/libdbus-1.so.3.19.13"
+name = "/usr/lib/libdbus-1.so.3.32.0"
 mode = 0o554
 strip = true
 
 [[link]]
 name = "/usr/lib/libdbus-1.so.3"
-source = "/usr/lib/libdbus-1.so.3.19.13"
+source = "/usr/lib/libdbus-1.so.3.32.0"
 mode = 0o444
 
 [[link]]
 name = "/usr/lib/libdbus-1.so"
-source = "/usr/lib/libdbus-1.so.3.19.13"
+source = "/usr/lib/libdbus-1.so.3.32.0"
 mode = 0o444
 
 [[link]]
@@ -462,21 +429,24 @@ name = "usr/lib/libdbus-1.so.3"
 source = "/usr/lib/libdbus-1.so.3.19.13"
 mode = 0o444
 
+
 [[file]]
-name = "/lib/libutil-2.33.so"
+name = "/usr/lib/libidn2.so.0.3.7"
+mode = 0o554
+
+[[link]]
+name = "/usr/lib/libidn2.so.0"
+source = "/usr/lib/libidn2.so.0.3.7"
+
+
+
+
+
+[[file]]
+name = "/lib/libutil.so.1"
 mode = 0o555
 uid = 0
 gid = 0
-
-[[link]]
-name = "/lib/libutil.so.1"
-source = "/lib/libutil-2.33.so"
-mode = 0o555
-
-[[link]]
-name = "/usr/lib/libutil.so"
-source = "/lib/libutil.so.1"
-mode = 0o555
 
 [[file]]
 name = "/usr/lib/libkmod.so.2.3.7"
@@ -505,6 +475,22 @@ name = "/usr/lib/libdds_security_ac.so"
 [[file]]
 mode = 0o555
 name = "/usr/lib/libdds_security_auth.so"
+
+### ZSTD
+[[file]]
+mode = 0o555
+name = "/usr/lib/libzstd.so.1.5.2"
+
+[[link]]
+name = "/usr/lib/libzstd.so.1"
+source = "/usr/lib/libzstd.so.1.5.2"
+
+[[link]]
+name = "/usr/lib/libzstd.so"
+source = "/usr/lib/libzstd.so.1.5.2"
+
+
+
 
 ### Terminfo files
 ## We only need these three
