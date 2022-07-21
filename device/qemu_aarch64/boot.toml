@@ -15,12 +15,12 @@ name = "vmlinuz"
 mode = 0o777
 uid = 0
 gid = 0
-source = "boot/vmlinuz-5.10.57"
+source = "boot/vmlinuz-5.15.55"
 
 [[img.file]]
 name = "System.map"
 mode = 0o777
 uid = 0
 gid = 0
-source = "boot/System.map-5.10.57"
+source = "boot/System.map-5.15.55"
 

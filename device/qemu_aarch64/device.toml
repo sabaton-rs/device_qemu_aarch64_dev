@@ -11,7 +11,7 @@ images = ["boot.toml","image.toml","vendor.toml","data.toml"]
 #kernel_src = "git@github.com:gregkh/linux.git"
 kernel_src = "https://github.com/gregkh/linux.git"
 # Use this branch
-kernel_checkout = "1cd6e30b83d741562b55bf5b7763b1238a91150c"
+kernel_checkout = "baefa2315cb1371486f6661a628e96fa3336f573"
 # Kernel configuration to use
 kernel_config = "defconfig"
 # Override the .config of the kernel (Optional)
