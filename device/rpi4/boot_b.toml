@@ -1,0 +1,81 @@
+defaults = [
+{ path = ".*", mode=0o700, uid=0, gid=0, xattrs=[]}
+]
+
+[[img]]
+name = "boot_b.fat32"
+version = "1.0.0"
+image_type = "fat32"
+fs_options = { blocks_count = 20000, log_block_size = 2, extra="", uuid="065bb6b6ab6111eba5c500155dd3df0d" }
+
+# A file copied from the build output
+[[img.file]]
+name = "kernel8.img"
+mode = 0o777
+uid = 0
+gid = 0
+source = "usr/src/linux/arch/arm64/boot/Image.gz"
+
+[[img.file]]
+name = "System.map"
+mode = 0o777
+uid = 0
+gid = 0
+source = "boot/System.map-5.10.60-v8+"
+
+
+[[img.file]]
+name = "initrd"
+mode = 0o777
+uid = 0
+gid = 0
+source = "deploy/images/initrd.cpio"
+
+[[img.file]]
+name = "bcm2711-rpi-4-b.dtb"
+mode = 0o777
+uid = 0
+gid = 0
+source = "usr/src/linux/arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b.dtb"
+
+[[img.file]]
+name = "config"
+mode = 0o777
+uid = 0
+gid = 0
+source = "boot/config-5.10.60-v8+"
+
+## The configuration file for the bootloader
+[[img.ifile]]
+name = "config.txt"
+source = """# For more options and information see
+# http://rpf.io/configtxt
+
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
+[pi4]
+# Enable DRM VC4 V3D driver on top of the dispmanx display stack
+dtoverlay=vc4-fkms-v3d
+max_framebuffers=2
+
+[all]
+#dtoverlay=vc4-fkms-v3d
+
+initramfs initrd
+"""
+
+[[img.file]]
+name = "start4.elf"
+source = "files/boot/start4.elf"
+skip_strip = true
+
+[[img.file]]
+name = "fixup4.dat"
+source = "files/boot/fixup4.dat"
+skip_strip = true
+
+[[img.ifile]]
+name = "cmdline.txt"
+source = "console=serial0,115200 console=tty1 elevator=deadline sabaton.boot.slot_suffix=b root=/dev/mmcblk0"
+

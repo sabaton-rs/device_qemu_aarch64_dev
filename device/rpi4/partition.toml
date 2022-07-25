@@ -1,0 +1,104 @@
+# Partition information for device
+# 512MB Flash device
+[flash]
+size = "512MiB"
+# Logical block size. Only 512 and 4096 are supported. 
+lbs = "Lb512"
+guid = "eb01b55a-227f-11ec-bc73-571d43468c90"
+
+[[flash.partition]]
+# Size in bytes 
+name = "boot_a"
+size = "50MiB"
+partition_type = "EFI"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "boot_b"
+size = "50MiB"
+partition_type = "EFI"
+flags = 0
+
+[[flash.partition]]
+name = "misc"
+size = "10MiB"
+partition_type = "EFI"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "settings_a"
+size = "4MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "settings_b"
+size = "4MiB"
+partition_type = "Linux_FS"
+flags = 0  
+
+[[flash.partition]]
+# Size in bytes 
+name = "firmware_a"
+size = "4MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "firmware_b"
+size = "4MiB"
+partition_type = "Linux_FS"
+flags = 0  
+
+[[flash.partition]]
+# Size in bytes 
+name = "vbmeta_a"
+size = "20MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "vbmeta_b"
+size = "20MiB"
+partition_type = "Linux_FS"
+flags = 0  
+
+[[flash.partition]]
+# Size in bytes 
+name = "system_a"
+size = "100MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "system_b"
+size = "100MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "vendor_a"
+size = "50MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "vendor_b"
+size = "50MiB"
+partition_type = "Linux_FS"
+flags = 0
+
+[[flash.partition]]
+# Size in bytes 
+name = "data"
+size = "30MiB"
+partition_type = "Linux_FS"
+flags = 0  

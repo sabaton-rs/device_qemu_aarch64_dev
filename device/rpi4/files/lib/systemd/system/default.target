@@ -1,0 +1,9 @@
+#  This file is part of Sabaton startup
+
+[Unit]
+Description=Sabaton normal startup
+Requires=debug-shell.service systemd-udevd.service systemd-journald.service systemd-udev-trigger.service systemd-resolved.service
+#Wants=
+Conflicts=rescue.service rescue.target
+After=multi-user.target 
+AllowIsolate=yes
