@@ -21,7 +21,7 @@ kernel_targets = ["Image","dtbs"]
 
 target = "aarch64-unknown-linux-gnu"
 flash_layout  = "partition.toml"
-initrd = { image="initrd.toml", target="aarch64-unknown-linux-musl", pack_with_kernel=false}
+initrd = { image="initrd.toml", target="aarch64-unknown-linux-musl", pack_with_kernel=true}
 
 image_to_partition = [
     [["boot_a"], "boot_a.fat32", "options"],

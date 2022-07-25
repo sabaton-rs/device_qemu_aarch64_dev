@@ -21,7 +21,7 @@ name = "System.map"
 mode = 0o777
 uid = 0
 gid = 0
-source = "boot/System.map-5.10.60-v8+"
+source = "boot/System.map-5.15.56-v8+"
 
 
 [[img.file]]
@@ -43,7 +43,7 @@ name = "config"
 mode = 0o777
 uid = 0
 gid = 0
-source = "boot/config-5.10.60-v8+"
+source = "boot/config-5.15.56-v8+"
 
 ## The configuration file for the bootloader
 [[img.ifile]]
@@ -77,5 +77,5 @@ skip_strip = true
 
 [[img.ifile]]
 name = "cmdline.txt"
-source = "console=serial0,115200 console=tty1 elevator=deadline sabaton.boot.slot_suffix=b root=/dev/mmcblk0"
+source = "console=serial0,115200 console=tty1 elevator=deadline sabaton.boot.slot_suffix=b"
 
