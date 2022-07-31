@@ -17,7 +17,7 @@ kernel_config = "bcm2711_defconfig"
 # Override the .config of the kernel (Optional)
 kernel_dot_config = "files/kernel_config.release"
 
-kernel_targets = ["Image","dtbs"]
+kernel_targets = ["Image.gz","dtbs"]
 
 target = "aarch64-unknown-linux-gnu"
 flash_layout  = "partition.toml"

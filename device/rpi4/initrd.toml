@@ -61,8 +61,8 @@ name = "/etc/fstab"
 source = '''# Fstab for initrd. 
 #<dev>                          <mnt_point>     <type>  <mnt_flags options> <fs_mgr_flags>
 # system partition must be mounted as root.
-/dev/block/by-name/system           /           ext4    ro,noauto,nouser    slotselect,first_stage_mount
-/dev/block/by-name/vendor           /vendor     ext4    ro,noauto,nouser    slotselect,first_stage_mount
+/dev/block/by-name/system           /           ext4    rw,noauto,nouser    slotselect,first_stage_mount
+/dev/block/by-name/vendor           /vendor     ext4    rw,noauto,nouser    slotselect,first_stage_mount
 /dev/block/by-name/data             /data       ext4    rw,noauto,nouser    first_stage_mount
 '''
 

@@ -27,6 +27,9 @@ filter = [
     "^modules.builtin.bin$",
     "modules.dep*",
     "modules.order",
+    "drm*",
+    "v3d.ko*",
+    "vc4.ko*",
     "modules.devname"]  # Must be a regex. Can be a list of regexes
 source = "lib/modules" # must be a directory. starts searching from here. Note that this is retained 
 dest_append = "dir" #optional directory name to be prefixed when copying to the

@@ -68,7 +68,7 @@ max_framebuffers=2
 
 [all]
 #dtoverlay=vc4-fkms-v3d
-dtoverlay=vc4-kms-v3d
+#dtoverlay=vc4-kms-v3d
 initramfs initrd
 """
 
