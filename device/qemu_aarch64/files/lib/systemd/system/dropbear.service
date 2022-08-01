@@ -1,0 +1,8 @@
+[Unit]
+Description=dropbear SSH service (socket-activated)
+#Wants=dropbearkey.service
+#After=dropbearkey.service
+
+[Service]
+ExecStart=/usr/sbin/dropbear 
+EnvironmentFile=/etc/default/dropbear

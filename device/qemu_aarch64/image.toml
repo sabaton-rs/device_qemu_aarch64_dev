@@ -60,16 +60,21 @@ mode = 0o555
 uid = 0
 gid = 0
 
-### dropbear
-#[[img.file]]
-#name = "/etc/dropbear/dropbear_rsa_host_key"
-#source = "secrets/dropbear_rsa_host_key"
-#mode = 0o600
+## dropbear
+[[img.file]]
+name = "/etc/dropbear/dropbear_rsa_host_key"
+source = "secrets/dropbear_rsa_host_key"
+mode = 0o600
 
-#[[img.file]]
-#name = "/etc/dropbear/authorized_keys"
-#source = "secrets/authorized_keys"
-#mode = 0o600
+[[img.file]]
+name = "/etc/dropbear/dropbear_dss_host_key"
+source = "secrets/dropbear_dss_host_key"
+mode = 0o600
+
+[[img.file]]
+name = "/etc/dropbear/authorized_keys"
+source = "secrets/authorized_keys"
+mode = 0o600
 
 [[img.file]]
 name = "/usr/sbin/dropbear"
@@ -77,6 +82,40 @@ source = "usr/sbin/dropbear"
 mode = 0o500
 uid = 0
 gid = 0
+
+[[img.ifile]]
+name = "/etc/default/dropbear"
+source = """# the TCP port that Dropbear listens on
+DROPBEAR_PORT=22
+
+# any additional arguments for Dropbear
+DROPBEAR_EXTRA_ARGS=
+
+# specify an optional banner file containing a message to be
+# sent to clients before they connect, such as "/etc/issue.net"
+DROPBEAR_BANNER=""
+
+# RSA hostkey file (default: /etc/dropbear/dropbear_rsa_host_key)
+#DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+
+# DSS hostkey file (default: /etc/dropbear/dropbear_dss_host_key)
+#DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+"""
+mode = 0o444
+
+[[img.file]]
+name= "/lib/systemd/system/dropbear.service"
+source="/files/lib/systemd/system/dropbear.service"
+mode = 0o444
+uid = 0
+gid = 0
+
+[[img.ifile]]
+name = "/etc/shells"
+source = """#
+/usr/bin/zsh
+"""
+mode = 0o644
 
 [[img.file]]
 name = "/usr/sbin/dropbearmulti"
@@ -621,5 +660,10 @@ FallbackDNS=1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4 2606:4700:4700::1111 2001:4860:4860:
 #ReadEtcHosts=yes
 #ResolveUnicastSingleLabel=no
 """
+[[img.link]]
+name = "/var/tmp"
+source = "/data/tmp"
+
+
 
 
