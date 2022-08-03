@@ -110,6 +110,11 @@ mode = 0o444
 uid = 0
 gid = 0
 
+[[img.link]]
+name = "/.ssh/authorized_keys"
+source = "/etc/dropbear/authorized_keys"
+mode = 0o600
+
 [[img.ifile]]
 name = "/etc/shells"
 source = """#
