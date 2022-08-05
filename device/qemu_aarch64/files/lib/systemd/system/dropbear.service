@@ -1,8 +1,7 @@
 [Unit]
 Description=dropbear SSH service (socket-activated)
-#Wants=dropbearkey.service
-#After=dropbearkey.service
+After=systemd-networkd.service
 
 [Service]
-ExecStart=/usr/sbin/dropbear 
+ExecStart=/usr/sbin/dropbear -F -E
 EnvironmentFile=/etc/default/dropbear
