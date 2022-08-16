@@ -486,6 +486,42 @@ Conflicts=emergency.service emergency.target
 
 """
 
+## Shutdown targets
+
+[[img.file]]
+name = "/lib/systemd/systemd-shutdown"
+source = "files/lib/systemd/system/systemd-shutdown"
+mode = 0o555
+
+[[img.file]]
+name = "/lib/systemd/system/systemd-poweroff.service"
+source = "files/lib/systemd/system/systemd-poweroff.service"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/poweroff.target"
+source = "files/lib/systemd/system/poweroff.target"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/shutdown.target"
+source = "files/lib/systemd/system/shutdown.target"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/umount.target"
+source = "files/lib/systemd/system/umount.target"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/final.target"
+source = "files/lib/systemd/system/final.target"
+mode = 0o444
+
+[[img.file]]
+name = "/bin/umount"
+source = "/bin/umount"
+mode = 0o555
 
 [[img.ifile]]
 name = "/etc/nsswitch.conf"
