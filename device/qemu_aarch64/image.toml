@@ -321,6 +321,11 @@ source = "files/lib/systemd/system/parsec.service"
 mode = 0o444
 
 [[img.file]]
+name = "/lib/systemd/system/dlt-daemon.service"
+source = "files/lib/systemd/system/dlt-daemon.service"
+mode = 0o444
+
+[[img.file]]
 name = "/lib/systemd/system/systemd-udevd.service"
 source = "files/lib/systemd/system/systemd-udevd.service"
 mode = 0o444
@@ -650,3 +655,24 @@ FallbackDNS=1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4 2606:4700:4700::1111 2001:4860:4860:
 """
 
 
+## DLT Daemon
+
+[[img.file]]
+name = "/usr/bin/dlt-daemon"
+mode = 0o500
+
+[[img.file]]
+name = "/usr/lib/libdlt.so.2.18.8"
+mode = 0o500
+
+[[img.link]]
+name = "/usr/lib/libdlt.so.2"
+source = "/usr/lib/libdlt.so.2.18.8"
+
+[[img.link]]
+name = "/usr/lib/libdlt.so"
+source = "/usr/lib/libdlt.so.2.18.8"
+
+[[img.file]]
+name = "/etc/dlt.conf"
+mode = 0o500
