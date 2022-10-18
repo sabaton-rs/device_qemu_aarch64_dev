@@ -660,6 +660,7 @@ FallbackDNS=1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4 2606:4700:4700::1111 2001:4860:4860:
 [[img.file]]
 name = "/usr/bin/dlt-daemon"
 mode = 0o500
+uid = 1001
 
 [[img.file]]
 name = "/usr/lib/libdlt.so.2.18.8"
@@ -676,3 +677,4 @@ source = "/usr/lib/libdlt.so.2.18.8"
 [[img.file]]
 name = "/etc/dlt.conf"
 mode = 0o500
+uid = 1001

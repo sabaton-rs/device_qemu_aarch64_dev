@@ -36,6 +36,10 @@ mode = 0o755
 name = "/run"
 mode = 0o755
 
+[[dir]] 
+name = "/tmp"
+mode = 0o555
+
 [[ifile]]
 name = "/etc/passwd"
 source = '''root:x:0:0:root:/home/root:/bin/sh
@@ -529,3 +533,11 @@ mode = 0o500
 [[link]]
 name = "/sbin/udevadm"
 source = "/bin/udevadm"
+
+###
+[[file]]
+name = "/bin/mount"
+mode = 0o700
+uid = 0
+
+

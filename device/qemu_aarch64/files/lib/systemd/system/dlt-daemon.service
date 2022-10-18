@@ -1,5 +1,5 @@
 [Unit]
-Description=PARSEC
+Description=DLT Daemon
 DefaultDependencies=no
 Conflicts=shutdown.target
 
