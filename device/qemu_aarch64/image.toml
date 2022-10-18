@@ -106,16 +106,24 @@ gid = 0
 [[img.file]]
 name = "/usr/lib/softhsm/libsofthsm2.so"
 mode = 0o500
+uid = 1000 # Only Parsec will access this file
+gid = 1000 # Only Parsec will access this file
+
+# Softhsm config
+[[img.file]]
+name = "/etc/softhsm2.conf"
+source = "files/etc/softhsm2.conf"
+mode = 0o400
 uid = 1068
 gid = 1068
 
 # Parsec configuration
-#[[img.file]]
-#name = "/etc/parsec_config.toml"
-#source = "files/etc/parsec_config.toml"
-#mode = 0o400
-#uid = 1068
-#gid = 1068
+[[img.file]]
+name = "/etc/parsec_config.toml"
+source = "files/etc/parsec_config.toml"
+mode = 0o400
+uid = 1000
+gid = 1000
 
 ###### Utilities
 
@@ -157,6 +165,20 @@ gid = 0
 [[img.file]]
 name = "/sbin/agetty"
 strip = true
+
+
+[[img.file]]
+name = "/lib/libselinux.so.1"
+mode = 0o555
+
+[[img.file]]
+name = "/usr/lib/libidn2.so.0.3.7"
+mode = 0o555
+
+[[img.link]]
+name = "/usr/lib/libidn2.so.0"
+source = "/usr/lib/libidn2.so.0.3.7"
+
 
 ## System D Files
 
@@ -291,6 +313,11 @@ mode = 0o444
 [[img.file]]
 name = "/lib/systemd/system/systemd-journald.service"
 source = "files/lib/systemd/system/systemd-journald.service"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/parsec.service"
+source = "files/lib/systemd/system/parsec.service"
 mode = 0o444
 
 [[img.file]]

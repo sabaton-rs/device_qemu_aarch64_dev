@@ -63,6 +63,7 @@ systemd-network:x:996:995::/:/sbin/nologin
 systemd-resolve:x:995:994::/:/sbin/nologin
 systemd-timesync:x:994:993::/:/sbin/nologin
 systemd-bus-proxy:x:993:992::/:/sbin/nologin
+parsec:x:1000:1000::/:/sbin/nologin
 '''
 
 [[ifile]]
@@ -216,9 +217,9 @@ name = "/lib/libblkid.so.1.1.0"
 strip = true
 mode = 0o555
 
-#[[link]]
-#name = "/lib/libblkid.so.1"
-#source = "/lib/libblkid.so.1.1.0"
+[[link]]
+name = "/lib/libblkid.so.1"
+source = "/lib/libblkid.so.1.1.0"
 
 [[link]]
 name = "/usr/lib/libblkid.so.1"

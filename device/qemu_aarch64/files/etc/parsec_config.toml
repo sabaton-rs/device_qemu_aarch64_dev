@@ -1,0 +1,29 @@
+[core_settings]
+log_timestamp = true
+log_error_details = true
+
+allow_root = true
+
+[listener]
+listener_type = "DomainSocket"
+# The timeout needs to be smaller than the test client timeout (five seconds) as it is testing
+# that the service does not hang for very big values of body or authentication length.
+timeout = 3000 # in milliseconds
+socket_path = "/run/parsec.sock"
+
+[authenticator]
+auth_type = "Direct"
+
+[[key_manager]]
+name = "on-disk-manager"
+manager_type = "OnDisk"
+store_path = "./mappings"
+
+[[provider]]
+provider_type = "Pkcs11"
+key_info_manager = "on-disk-manager"
+library_path = "/usr/lib/softhsm/libsofthsm2.so"
+user_pin = "123456"
+software_public_operations = false
+slot_number = 28355431
+
