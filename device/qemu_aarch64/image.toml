@@ -676,5 +676,6 @@ source = "/usr/lib/libdlt.so.2.18.8"
 
 [[img.file]]
 name = "/etc/dlt.conf"
+source = "files/etc/dlt.conf"
 mode = 0o500
 uid = 1001

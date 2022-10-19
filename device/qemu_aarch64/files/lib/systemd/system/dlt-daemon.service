@@ -2,21 +2,23 @@
 Description=DLT Daemon
 DefaultDependencies=no
 Conflicts=shutdown.target
+Requires=tmp.mount
+After=tmp.mount
 
 [Service]
 #CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_BROADCAST CAP_NET_RAW
 #DeviceAllow=char-* rw
 ExecStart=/usr/bin/dlt-daemon
 LockPersonality=yes
-MemoryDenyWriteExecute=yes
-NoNewPrivileges=yes
-Restart=on-failure
+#MemoryDenyWriteExecute=yes
+#NoNewPrivileges=yes
+#Restart=on-failure
 RestartKillSignal=SIGUSR2
 RestartSec=1
-RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6 AF_PACKET AF_ALG
-RestrictNamespaces=yes
-RestrictRealtime=yes
-RestrictSUIDSGID=yes
+#RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6 AF_PACKET AF_ALG
+#RestrictNamespaces=yes
+#RestrictRealtime=yes
+#RestrictSUIDSGID=yes
 WorkingDirectory=/data/home/
 #SystemCallArchitectures=native
 #SystemCallErrorNumber=EPERM
