@@ -23,7 +23,7 @@ gid = 0
 
 [[img.crate]]
 name = "/sbin/parsec"
-src_uri = {git = "https://github.com/parallaxsecond/parsec.git", rev="45a21bc7bd34b039b2bb8e3e045ea7ea058b7bfa"}
+src_uri = {git = "https://github.com/parallaxsecond/parsec.git", rev="7fd028beabc67ba6fe4ddf844ab0c32823a446c6"}
 executables = [
         {source = "parsec", target = "/sbin/parsec"}
 ]
@@ -34,6 +34,19 @@ mode = 0o555
 uid = 1068
 gid = 1068
 features = ["direct-authenticator","pkcs11-provider"]
+
+
+[[img.crate]]
+name = "/sbin/parsectool"
+src_uri = {git = "https://github.com/parallaxsecond/parsec-tool.git", rev="1dc8109ef77f556167fdfc9a57847b74170956ea"}
+executables = [
+        {source = "parsec-tool", target = "/sbin/parsec-tool"}
+]
+mode = 0o555
+# SecureElement has uid/gid 1068
+uid = 1068
+gid = 1068
+
 
 [[img.crate]]
 name = "/bin/ls"

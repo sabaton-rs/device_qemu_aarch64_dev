@@ -8,6 +8,7 @@ After=systemd-udevd.service
 
 [Service]
 Environment=TERM=linux
+Environment=PARSEC_SERVICE_ENDPOINT=unix:/run/parsec.sock
 ExecStart=/usr/bin/zsh
 Restart=always
 RestartSec=0
