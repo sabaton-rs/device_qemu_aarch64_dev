@@ -9,19 +9,19 @@ Conflicts=shutdown.target
 Environment=SOFTHSM2_CONF=/etc/softhsm2.conf
 ExecStart=/sbin/parsec -c /etc/parsec_config.toml
 LockPersonality=yes
-MemoryDenyWriteExecute=yes
-NoNewPrivileges=yes
+#MemoryDenyWriteExecute=yes
+#NoNewPrivileges=yes
 Restart=on-failure
 RestartKillSignal=SIGUSR2
 RestartSec=1
-RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6 AF_PACKET AF_ALG
-RestrictNamespaces=yes
-RestrictRealtime=yes
-RestrictSUIDSGID=yes
+#RestrictAddressFamilies=AF_UNIX AF_NETLINK AF_INET AF_INET6 AF_PACKET AF_ALG
+#RestrictNamespaces=yes
+#RestrictRealtime=yes
+#RestrictSUIDSGID=yes
 WorkingDirectory=/data/home/parsec
 #SystemCallArchitectures=native
 #SystemCallErrorNumber=EPERM
 #SystemCallFilter=@system-service
-User=parsec
+#User=parsec
 #WatchdogSec=3min
 
