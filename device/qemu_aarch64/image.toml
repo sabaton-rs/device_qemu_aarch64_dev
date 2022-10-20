@@ -334,6 +334,11 @@ source = "files/lib/systemd/system/parsec.service"
 mode = 0o444
 
 [[img.file]]
+name = "/lib/systemd/system/iox-roudi.service"
+source = "files/lib/systemd/system/iox-roudi.service"
+mode = 0o444
+
+[[img.file]]
 name = "/lib/systemd/system/dlt-daemon.service"
 source = "files/lib/systemd/system/dlt-daemon.service"
 mode = 0o444
@@ -692,3 +697,10 @@ name = "/etc/dlt.conf"
 source = "files/etc/dlt.conf"
 mode = 0o500
 uid = 1001
+
+## Iceoryx 
+
+[[img.file]]
+name = "/usr/bin/iox-roudi"
+uid = 1002
+mode = 0o500
