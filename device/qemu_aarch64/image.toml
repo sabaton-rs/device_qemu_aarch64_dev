@@ -472,8 +472,6 @@ source = """#
 """
 mode = 0o444
 
-
-
 ## SYSINIT target
 [[img.ifile]]
 name = "/lib/systemd/system/sysinit.target"
@@ -705,6 +703,33 @@ FallbackDNS=1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4 2606:4700:4700::1111 2001:4860:4860:
 name = "/var/tmp"
 source = "/data/tmp"
 
+#Container files
+[[img.file]]
+name = "base_container"
+mode = 0o777
+uid = 0
+gid = 0
+source = "deploy/images/base_container.ext2"
 
+[[img.file]]
+name = "/usr/bin/systemd-nspawn"
+mode = 0o777
 
+[[img.file]]
+name = "/bin/machinectl"
+mode = 0o777
 
+[[img.file]]
+name = "/lib/systemd/systemd-machined"
+mode = 0o555
+
+[[img.file]]
+name = "/lib/systemd/system/dbus-org.freedesktop.machine1.service"
+mode = 0o444
+
+[[img.file]]
+name = "/usr/share/dbus-1/system-services/org.freedesktop.machine1.service"
+
+[[img.file]]
+name = "/usr/share/dbus-1/system.d/org.freedesktop.machine1.conf"
+mode = 0o444
