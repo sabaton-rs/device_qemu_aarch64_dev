@@ -21,6 +21,6 @@ WorkingDirectory=/data/home/
 #SystemCallArchitectures=native
 #SystemCallErrorNumber=EPERM
 #SystemCallFilter=@system-service
-#User=parsec
+#User=
 #WatchdogSec=3min
 

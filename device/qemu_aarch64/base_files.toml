@@ -69,7 +69,9 @@ systemd-timesync:x:994:993::/:/sbin/nologin
 systemd-bus-proxy:x:993:992::/:/sbin/nologin
 parsec:x:1000:1000::/:/sbin/nologin
 logging:x:1001:1001::/:/sbin/nologin
-shmbus:x:1002:1002::/:/sbin/nologin
+shmreader:x:1002:1002::/:/sbin/nologin
+shmwriter:x:1003:1003::/:/sbin/nologin
+shmd:x:1004:1004::/:/sbin/nologin
 '''
 
 [[ifile]]

@@ -702,5 +702,11 @@ uid = 1001
 
 [[img.file]]
 name = "/usr/bin/iox-roudi"
-uid = 1002
+uid = 1004
 mode = 0o500
+
+[[img.file]]
+name = "/etc/iceoryx/roudi_config.toml"
+source = "files/etc/iceoryx/roudi_config.toml"
+uid = 1004
+mode = 0o400
