@@ -5,7 +5,7 @@ version = "0.0.1"
 # This must also be in the Cargo.toml as a feature
 cargo_device_feature = "device_qemu-aarch64-virtual"
 # Use these image files
-images = ["boot.toml","image.toml","vendor.toml","data.toml"]
+images = ["boot.toml","container_files.toml","image.toml","vendor.toml","data.toml"]
 ## Linux Kernel information
 # Pull the kernel from this location
 #kernel_src = "git@github.com:gregkh/linux.git"

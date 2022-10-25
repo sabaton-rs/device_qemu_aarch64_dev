@@ -1,0 +1,41 @@
+defaults = [
+        { path = ".*", mode=0o544 ,uid=0, gid=0, xattrs=[ ["",""]]},
+    ]
+
+[[img]]
+name = "base_container.ext2"
+version = "0.0.1"
+image_type = "ext2"
+fs_options = { blocks_count = 8192, log_block_size = 2, extra="", uuid="d91f8074-38cc-11ed-b1d9-432e5d38638e" }
+include = ["base_files.toml"]
+
+[[img.crate]]
+name = "/bin/procs"
+src_uri = {git = "https://github.com/dalance/procs.git"}
+executables = [
+	{source = "procs", target = "/bin/procs"}
+]
+mode = 0o500
+uid = 0
+gid = 0
+
+[[img.crate]]
+name = "/bin/ls"
+src_uri = {git = "https://github.com/sabaton-rs/exa.git"}
+executables = [
+        {source = "exa", target = "/bin/ls"}
+]
+mode = 0o555
+uid = 0
+
+[[img.file]]
+name = "/usr/bin/zsh"
+source = "usr/bin/zsh"
+mode = 0o555
+uid = 0
+gid = 0
+
+[[img.link]]
+name = "/bin/sh"
+source = "/usr/bin/zsh"
+mode = 0o555

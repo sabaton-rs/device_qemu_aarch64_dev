@@ -73,16 +73,21 @@ mode = 0o555
 uid = 0
 gid = 0
 
-### dropbear
-#[[img.file]]
-#name = "/etc/dropbear/dropbear_rsa_host_key"
-#source = "secrets/dropbear_rsa_host_key"
-#mode = 0o600
+## dropbear
+[[img.file]]
+name = "/etc/dropbear/dropbear_rsa_host_key"
+source = "secrets/dropbear_rsa_host_key"
+mode = 0o600
 
-#[[img.file]]
-#name = "/etc/dropbear/authorized_keys"
-#source = "secrets/authorized_keys"
-#mode = 0o600
+[[img.file]]
+name = "/etc/dropbear/dropbear_dss_host_key"
+source = "secrets/dropbear_dss_host_key"
+mode = 0o600
+
+[[img.file]]
+name = "/etc/dropbear/authorized_keys"
+source = "secrets/authorized_keys"
+mode = 0o600
 
 [[img.file]]
 name = "/usr/sbin/dropbear"
@@ -90,6 +95,45 @@ source = "usr/sbin/dropbear"
 mode = 0o500
 uid = 0
 gid = 0
+
+[[img.ifile]]
+name = "/etc/default/dropbear"
+source = """# the TCP port that Dropbear listens on
+DROPBEAR_PORT=22
+
+# any additional arguments for Dropbear
+DROPBEAR_EXTRA_ARGS=
+
+# specify an optional banner file containing a message to be
+# sent to clients before they connect, such as "/etc/issue.net"
+DROPBEAR_BANNER=""
+
+# RSA hostkey file (default: /etc/dropbear/dropbear_rsa_host_key)
+#DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+
+# DSS hostkey file (default: /etc/dropbear/dropbear_dss_host_key)
+#DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+"""
+mode = 0o444
+
+[[img.file]]
+name= "/lib/systemd/system/dropbear.service"
+source="/files/lib/systemd/system/dropbear.service"
+mode = 0o444
+uid = 0
+gid = 0
+
+[[img.link]]
+name = "/.ssh/authorized_keys"
+source = "/etc/dropbear/authorized_keys"
+mode = 0o600
+
+[[img.ifile]]
+name = "/etc/shells"
+source = """#
+/usr/bin/zsh
+"""
+mode = 0o644
 
 [[img.file]]
 name = "/usr/sbin/dropbearmulti"
@@ -478,8 +522,6 @@ source = """#
 """
 mode = 0o444
 
-
-
 ## SYSINIT target
 [[img.ifile]]
 name = "/lib/systemd/system/sysinit.target"
@@ -492,6 +534,42 @@ Conflicts=emergency.service emergency.target
 
 """
 
+## Shutdown targets
+
+[[img.file]]
+name = "/lib/systemd/systemd-shutdown"
+source = "files/lib/systemd/system/systemd-shutdown"
+mode = 0o555
+
+[[img.file]]
+name = "/lib/systemd/system/systemd-poweroff.service"
+source = "files/lib/systemd/system/systemd-poweroff.service"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/poweroff.target"
+source = "files/lib/systemd/system/poweroff.target"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/shutdown.target"
+source = "files/lib/systemd/system/shutdown.target"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/umount.target"
+source = "files/lib/systemd/system/umount.target"
+mode = 0o444
+
+[[img.file]]
+name = "/lib/systemd/system/final.target"
+source = "files/lib/systemd/system/final.target"
+mode = 0o444
+
+[[img.file]]
+name = "/bin/umount"
+source = "/bin/umount"
+mode = 0o555
 
 [[img.ifile]]
 name = "/etc/nsswitch.conf"
@@ -671,7 +749,40 @@ FallbackDNS=1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4 2606:4700:4700::1111 2001:4860:4860:
 #ReadEtcHosts=yes
 #ResolveUnicastSingleLabel=no
 """
+[[img.link]]
+name = "/var/tmp"
+source = "/data/tmp"
 
+#Container files
+[[img.file]]
+name = "base_container"
+mode = 0o777
+uid = 0
+gid = 0
+source = "deploy/images/base_container.ext2"
+
+[[img.file]]
+name = "/usr/bin/systemd-nspawn"
+mode = 0o777
+
+[[img.file]]
+name = "/bin/machinectl"
+mode = 0o777
+
+[[img.file]]
+name = "/lib/systemd/systemd-machined"
+mode = 0o555
+
+[[img.file]]
+name = "/lib/systemd/system/dbus-org.freedesktop.machine1.service"
+mode = 0o444
+
+[[img.file]]
+name = "/usr/share/dbus-1/system-services/org.freedesktop.machine1.service"
+
+[[img.file]]
+name = "/usr/share/dbus-1/system.d/org.freedesktop.machine1.conf"
+mode = 0o444
 
 ## DLT Daemon
 
@@ -710,3 +821,4 @@ name = "/etc/iceoryx/roudi_config.toml"
 source = "files/etc/iceoryx/roudi_config.toml"
 uid = 1004
 mode = 0o400
+

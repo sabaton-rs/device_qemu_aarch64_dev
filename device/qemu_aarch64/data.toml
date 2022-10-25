@@ -39,3 +39,8 @@ mode = 0o600
 uid = 1000
 gid = 1000
 
+[[img.dir]]
+name = "/tmp"
+mode = 0o755
+
+

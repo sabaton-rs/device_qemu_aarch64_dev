@@ -1,0 +1,7 @@
+[Unit]
+Description=dropbear SSH service (socket-activated)
+After=systemd-networkd.service
+
+[Service]
+ExecStart=/usr/sbin/dropbear -F -E
+EnvironmentFile=/etc/default/dropbear
