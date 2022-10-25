@@ -3,7 +3,7 @@
 [Unit]
 Description=Sabaton normal startup
 
-Requires=debug-shell.service systemd-udevd.service systemd-journald.service systemd-udev-trigger.service dlt-daemon.service parsec.service iox-roudi.service dropbear.service
+Requires=debug-shell.service systemd-udevd.service systemd-journald.service systemd-udev-trigger.service dlt-daemon.service parsec.service iox-roudi.service dropbear.service systemd-machined.service
 #Wants=
 Conflicts=rescue.service rescue.target
 After=multi-user.target 
